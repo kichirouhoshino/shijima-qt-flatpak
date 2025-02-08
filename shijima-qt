@@ -1,0 +1,3 @@
+#!/bin/sh
+source linuxdeploy-plugin-qt-hook.sh
+exec /app/bin/shijima-qt "$@"

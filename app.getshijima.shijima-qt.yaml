@@ -3,16 +3,14 @@ runtime: org.kde.Platform
 runtime-version: '6.8'
 sdk: org.kde.Sdk
 command: shijima-qt
-# separate-locales: false # Uncomment when using Method 2
 finish-args:
   - --device=dri
   - --socket=x11
   - --socket=wayland
   - --socket=pulseaudio
-  - --env=QT_QPA_PLATFORM=xcb # Mostly to suppress the Qt error, but not needed
-  # Needed for the program to work, else it will throw the error "No window observer backend available".
-  # This is a huge security risk of course. Until I can isolate what specific talk name it needs, this will do for now.
+  - --env=QT_QPA_PLATFORM=xcb
   - --socket=session-bus
+  - --filesystem=/tmp
 
 modules:
   - name: shijima-qt
@@ -26,17 +24,7 @@ modules:
       - desktop-file-edit --set-key="Exec" --set-value="shijima-qt" --set-icon=$FLATPAK_ID squashfs-root/usr/share/applications/shijima-qt.desktop
       - install -D squashfs-root/usr/share/applications/shijima-qt.desktop /app/share/applications/app.getshijima.shijima-qt.desktop
       - install -D squashfs-root/usr/share/icons/hicolor/512x512/apps/shijima-qt.png /app/share/icons/hicolor/512x512/apps/app.getshijima.shijima-qt.png
-
-      ## Ideally there are two ways to install this app
-      ## Method 1: Unpacking files from the AppImage
-      ## This guarantees that most of its components will work and also allows locale extensions
       - mv squashfs-root/usr/bin /app/bin
       - mv squashfs-root/usr/lib /app/lib
       - mv squashfs-root/usr/plugins /app/plugins
       - mv squashfs-root/usr/translations /app/translations/
-
-      ## Method 2: Using the provided binary from the root of the archive
-      ## The error "Qt: Session management error: Could not open network socket"
-      ## will appear, but the program still works
-      #- mkdir /app/bin
-      #- mv shijima-qt /app/bin/shijima-qt

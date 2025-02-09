@@ -1,4 +1,4 @@
-app-id: app.getshijima.shijima-qt
+app-id: com.pixelomer.ShijimaQT
 runtime: org.kde.Platform
 runtime-version: '6.8'
 sdk: org.kde.Sdk
@@ -9,8 +9,11 @@ finish-args:
   - --socket=wayland
   - --socket=pulseaudio
   - --env=QT_QPA_PLATFORM=xcb
-  - --socket=session-bus
+ #- --socket=session-bus
   - --filesystem=/tmp
+  - --talk-name=org.gnome.Shell.Extensions
+  - --talk-name=org.kde.kwin.Scripting
+  - --talk-name=org.kde.kwin.Script
 
 modules:
   - name: shijima-qt
@@ -22,8 +25,8 @@ modules:
     build-commands:
       - ./Shijima-Qt-x86_64.AppImage --appimage-extract
       - desktop-file-edit --set-key="Exec" --set-value="shijima-qt" --set-icon=$FLATPAK_ID squashfs-root/usr/share/applications/shijima-qt.desktop
-      - install -D squashfs-root/usr/share/applications/shijima-qt.desktop /app/share/applications/app.getshijima.shijima-qt.desktop
-      - install -D squashfs-root/usr/share/icons/hicolor/512x512/apps/shijima-qt.png /app/share/icons/hicolor/512x512/apps/app.getshijima.shijima-qt.png
+      - install -D squashfs-root/usr/share/applications/shijima-qt.desktop /app/share/applications/$FLATPAK_ID.desktop
+      - install -D squashfs-root/usr/share/icons/hicolor/512x512/apps/shijima-qt.png /app/share/icons/hicolor/512x512/apps/$FLATPAK_ID.png
       - mv squashfs-root/usr/bin /app/bin
       - mv squashfs-root/usr/lib /app/lib
       - mv squashfs-root/usr/plugins /app/plugins

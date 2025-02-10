@@ -3,4 +3,4 @@ To build and install:
 
 `$ flatpak-builder --user --install-deps-from=flathub --install --force-clean builddir com.pixelomer.ShijimaQT`
 
-Note that this currently does not work as I'm currently experimenting with getting proper sandboxing working. Currently in touch with the dev. You can follow the progress [here](https://github.com/pixelomer/Shijima-Qt-releases/issues/13).
+Does not currently work under GNOME as it requires installing an extension. Currently in touch with the dev. You can follow the progress [here](https://github.com/pixelomer/Shijima-Qt-releases/issues/13).

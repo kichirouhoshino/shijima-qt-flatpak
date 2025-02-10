@@ -6,14 +6,11 @@ command: shijima-qt
 finish-args:
   - --device=dri
   - --socket=x11
-  - --socket=wayland
   - --socket=pulseaudio
   - --env=QT_QPA_PLATFORM=xcb
- #- --socket=session-bus
   - --filesystem=/tmp
-  - --talk-name=org.gnome.Shell.Extensions
-  - --talk-name=org.kde.kwin.Scripting
-  - --talk-name=org.kde.kwin.Script
+  - --talk-name=org.gnome.Shell
+  - --talk-name=org.kde.KWin
 
 modules:
   - name: shijima-qt

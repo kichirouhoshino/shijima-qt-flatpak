@@ -6,12 +6,13 @@ command: shijima-qt
 finish-args:
   - --device=dri
   - --socket=x11
+  - --share=ipc
   - --env=SHIJIMA_FLATPAK=1
   - --socket=pulseaudio
   - --env=QT_QPA_PLATFORM=xcb
   - --talk-name=org.gnome.Shell
   - --talk-name=org.kde.KWin
-  - --talk-name=org.freedesktop.Flatpak
+  - --talk-name=org.freedesktop.Flatpak # flatpak-spawn needed for installing gnome extension
 
 modules:
   - name: shijima-qt

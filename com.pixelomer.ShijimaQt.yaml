@@ -16,16 +16,26 @@ finish-args:
 modules:
   - name: shijima-qt
     buildsystem: simple
-    sources:
-      - type: archive
-        url: https://github.com/pixelomer/Shijima-Qt-releases/releases/download/v0.0.2/release-linux-x86_64.zip
-        sha256: 5e130677625fa346d7204e9bc1d774432168f5bf19138999b52745c72c9c540e
     build-commands:
       - ./Shijima-Qt-x86_64.AppImage --appimage-extract
       - desktop-file-edit --set-key="Exec" --set-value="shijima-qt" --set-icon=$FLATPAK_ID squashfs-root/usr/share/applications/shijima-qt.desktop
-      - install -D squashfs-root/usr/share/applications/shijima-qt.desktop /app/share/applications/$FLATPAK_ID.desktop
-      - install -D squashfs-root/usr/share/icons/hicolor/512x512/apps/shijima-qt.png /app/share/icons/hicolor/512x512/apps/$FLATPAK_ID.png
+      - install -Dm644 squashfs-root/usr/share/applications/shijima-qt.desktop /app/share/applications/$FLATPAK_ID.desktop
+      - install -Dm644 squashfs-root/usr/share/icons/hicolor/512x512/apps/shijima-qt.png /app/share/icons/hicolor/512x512/apps/$FLATPAK_ID.png
+      - install -Dm644 com.pixelomer.ShijimaQt.appdata.xml /app/share/appdata/com.pixelomer.ShijimaQt.appdata.xml
       - mv squashfs-root/usr/bin /app/bin
       - mv squashfs-root/usr/lib /app/lib
       - mv squashfs-root/usr/plugins /app/plugins
       - mv squashfs-root/usr/translations /app/translations/
+    sources:
+      - type: archive
+        url: https://github.com/pixelomer/Shijima-Qt-releases/releases/download/v0.0.2/release-linux-x86_64.zip
+        sha256: 5e130677625fa346d7204e9bc1d774432168f5bf19138999b52745c72c9c540e
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/pixelomer/Shijima-Qt-releases/releases/latest
+          tag-query: .tag_name
+          timestamp-query: .published_at
+          version-query: $tag | sub("^[vV]"; "")
+          url-query: '"https://github.com/pixelomer/Shijima-Qt-releases/archive/\($tag)/release-linux-x86_64.zip"'
+      - type: file
+        path: com.pixelomer.ShijimaQt.appdata.xml

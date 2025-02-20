@@ -8,7 +8,7 @@ flatpak-builder --user --install-deps-from=flathub --install --force-clean build
 You can install it from my personal flatpak repo (remove the --user argument to install system-wide)
 ``` bash
 flatpak remote-add --user roddy-flatpak https://kichirouhoshino.github.io/roddy-flatpaks/index.flatpakrepo
-flatpak install roddy-flatpak net.badlion.BadlionClient
+flatpak install roddy-flatpak com.pixelomer.ShijimaQt
 ```
 
 Flatpak bundles are also available on the actions tab.

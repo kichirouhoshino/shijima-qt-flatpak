@@ -2,12 +2,14 @@ app-id: com.pixelomer.ShijimaQt
 runtime: org.kde.Platform
 runtime-version: '6.8'
 sdk: org.kde.Sdk
+separate-locales: false
 command: shijima-qt
 finish-args:
   - --device=dri
   - --socket=x11
   - --share=ipc
   - --env=SHIJIMA_FLATPAK=1
+  - --env=LD_LIBRARY_PATH=/app/lib
   - --socket=pulseaudio
   - --env=QT_QPA_PLATFORM=xcb
   - --talk-name=org.gnome.Shell
@@ -18,15 +20,17 @@ modules:
   - name: shijima-qt
     buildsystem: simple
     build-commands:
+      - mkdir -p /app/bin
+      - mkdir -p /app/lib
+      - install -Dm755 shijima-qt /app/bin/shijima-qt
+      - install -Dm755 libunarr.so.1 /app/lib/libunarr.so.1
+      - ln -s /usr/lib/x86_64-linux-gnu/libbz2.so.1.0.8 /app/lib/libbz2.so.1.0
+      # AppImage is only used for the icon and desktop file
       - ./Shijima-Qt-x86_64.AppImage --appimage-extract
       - desktop-file-edit --set-key="Exec" --set-value="shijima-qt" --set-icon=$FLATPAK_ID squashfs-root/usr/share/applications/shijima-qt.desktop
       - install -Dm644 squashfs-root/usr/share/applications/shijima-qt.desktop /app/share/applications/$FLATPAK_ID.desktop
       - install -Dm644 squashfs-root/usr/share/icons/hicolor/512x512/apps/shijima-qt.png /app/share/icons/hicolor/512x512/apps/$FLATPAK_ID.png
-      - install -Dm644 com.pixelomer.ShijimaQt.appdata.xml /app/share/appdata/com.pixelomer.ShijimaQt.appdata.xml
-      - mv squashfs-root/usr/bin /app/bin
-      - mv squashfs-root/usr/lib /app/lib
-      - mv squashfs-root/usr/plugins /app/plugins
-      - mv squashfs-root/usr/translations /app/translations/
+      - install -Dm644 $FLATPAK_ID.appdata.xml /app/share/appdata/$FLATPAK_ID.appdata.xml
     sources:
       - type: archive
         url: https://github.com/pixelomer/Shijima-Qt/releases/download/v0.0.3/release-linux-x86_64.zip
@@ -34,9 +38,7 @@ modules:
         x-checker-data:
           type: json
           url: https://api.github.com/repos/pixelomer/Shijima-Qt/releases/latest
-          tag-query: .tag_name
-          timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
-          url-query: '"https://github.com/pixelomer/Shijima-Qt/archive/\($tag)/release-linux-x86_64.zip"'
+          url-query: '"https://github.com/pixelomer/Shijima-Qt/releases/download/" + $version + "/release-linux-x86_64.zip"'
       - type: file
         path: com.pixelomer.ShijimaQt.appdata.xml

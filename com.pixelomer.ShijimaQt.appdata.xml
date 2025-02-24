@@ -37,7 +37,12 @@
 
     <screenshots>
         <screenshot type="default">
+            <image>https://github.com/pixelomer/Shijima-Qt/blob/main/.images/Shijima-Qt-Fedora.jpg</image>
+            <caption>Shimejis standing and sitting on a window</caption>
+        </screenshot>
+        <screenshot>
             <image>https://getshijima.app/shijima-qt.png</image>
+            <caption>Shijima-Qt main window</caption>
         </screenshot>
     </screenshots>
 

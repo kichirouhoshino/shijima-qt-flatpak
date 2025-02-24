@@ -42,6 +42,17 @@
     </screenshots>
 
     <releases>
+        <release version="v0.0.3" date="2025-02-21">
+            <description>
+                <p>Changes:</p>
+                <ul>
+                    <li>Experimental multi-monitor support. It may not work as expected in all configurations so if you encounter any problems when using multiple monitors, please create an issue about it.</li>
+                    <li>Shimeji should no longer fall when the active window is resized.</li>
+                    <li>The Inspect dialog now shows more details about the selected shimeji and the environment.</li>
+                    <li>Shijima-Qt now provides a basic CLI and HTTP API for interacting with shimeji. For the CLI usage, see ./shijima-qt --help (or platform equivalent). For the HTTP API details, see HTTP-API.md.</li>
+                </ul>
+            </description>
+        </release>
         <release version="v0.0.2" date="2025-02-15">
             <description>
                 <p>Changes:</p>

@@ -13,4 +13,4 @@ flatpak install roddy-flatpak com.pixelomer.ShijimaQt
 
 Flatpak bundles are also available on the actions tab.
 
-https://github.com/pixelomer/Shijima-Qt-releases/issues/13
+https://github.com/pixelomer/Shijima-Qt/issues/7

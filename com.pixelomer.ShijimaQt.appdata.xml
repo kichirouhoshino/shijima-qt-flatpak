@@ -47,6 +47,17 @@
     </screenshots>
 
     <releases>
+        <release version="v0.0.4" date="2025-03-12">
+            <description>
+                <p>This build mainly includes changes that could benefit streamers and anyone else interested in using Shijima-Qt as an overlay with programs like OBS.</p>
+                <p>Changes:</p>
+                <ul>
+                    <li>Windowed mode for running mascots within a single window. The background color for this window is adjustable and this mode can be enabled/disabled at any time.</li>
+                    <li>More ways to use the API and CLI.</li>
+                    <li>libshijima changes</li>
+                </ul>
+            </description>
+        </release>
         <release version="v0.0.3" date="2025-02-21">
             <description>
                 <p>Changes:</p>

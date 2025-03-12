@@ -33,8 +33,8 @@ modules:
       - install -Dm644 $FLATPAK_ID.appdata.xml /app/share/appdata/$FLATPAK_ID.appdata.xml
     sources:
       - type: archive
-        url: https://github.com/pixelomer/Shijima-Qt/releases/download/v0.0.3/release-linux-x86_64.zip
-        sha256: fdc0013696be6c1d30ce525461f48be8ae72553fca094b596d75edd8b6051f43
+        url: https://github.com/pixelomer/Shijima-Qt/releases/download/v0.0.4/release-linux-x86_64.zip
+        sha256: 0f9f5ecb0f35c53236c8568421d541b964c9a75c9abd6500bff44edd9580b08c
         x-checker-data:
           type: json
           url: https://api.github.com/repos/pixelomer/Shijima-Qt/releases/latest
